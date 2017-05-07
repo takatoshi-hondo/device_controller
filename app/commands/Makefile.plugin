@@ -1,0 +1,28 @@
+all:
+	make PLUGIN=nullc
+	make PLUGIN=setdevicenum
+	make PLUGIN=createnewdevice
+	make PLUGIN=setdeviceconf
+	make PLUGIN=setbinarymap
+	make PLUGIN=switchbinarymap
+	make PLUGIN=printvar
+	make PLUGIN=opendevice
+	make PLUGIN=devstatus
+	make PLUGIN=devmode
+	make PLUGIN=start
+	make PLUGIN=stop
+	ls *.so > .extcommand
+
+clean:
+	make PLUGIN=nullc clean
+	make PLUGIN=setdevicenum clean
+	make PLUGIN=createnewdevice clean
+	make PLUGIN=setdeviceconf clean
+	make PLUGIN=setbinarymap clean
+	make PLUGIN=switchbinarymap clean
+	make PLUGIN=printvar clean
+	make PLUGIN=opendevice clean
+	make PLUGIN=devstatus clean
+	make PLUGIN=devmode clean
+	make PLUGIN=start clean
+	make PLUGIN=stop clean

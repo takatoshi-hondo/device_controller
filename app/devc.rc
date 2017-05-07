@@ -1,0 +1,12 @@
+#initialization sequence
+setdevicenum 1
+createnewdevice ../device/usbserial_linux.so
+devstatus 0
+setdeviceconf 0 /dev/ttyACM0 115200
+devstatus 0
+setbinarymap binarymap.txt
+opendevice 0
+devstatus 0
+switchbinarymap 0 BULK
+devstatus 0
+devmode 0

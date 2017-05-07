@@ -24,15 +24,10 @@ public:
   DevcUSBSerialLinux(){
     cur_status = STATUS_NC;
   }
-  void setDeviceConf( map<string,string> conf ){
-    string identifier , key_dev , key_bd;
-    stringstream ss;
-    ss << id;
-    identifier = "USL" + ss.str();
-    key_dev = identifier + "_DEV";
-    key_bd  = identifier + "_BD";
-    devname = conf[key_dev];
-    bdr     = conf[key_bd];
+  void setDeviceConf( list<string> conf ){
+    devname = conf.front();
+    conf.pop_front();
+    bdr     = conf.front();
   }
   void openDevice( void ){
     fd = open( devname.c_str() , O_RDWR | O_NOCTTY );

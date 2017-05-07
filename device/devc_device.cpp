@@ -1,4 +1,5 @@
 #include "devc_device.hpp"
+#include <cstring>
 
 DevcDevice::DevcDevice(){
   int i;
@@ -12,6 +13,7 @@ DevcDevice::DevcDevice(){
   status[STATUS_CONNECTED]  = "Connected";
   status[STATUS_READERROR]  = "Read error";
   status[STATUS_WRITEERROR] = "Write error";
+  current_binarymap         = "NULL";
 }
 
 void DevcDevice::setDeviceID( int _id ){
@@ -36,7 +38,7 @@ void DevcDevice::setSendDataSize( int _ssize ){
 
 void DevcDevice::setCommunicationMode( char *cmode ){
   int i;
-  for( i = 1 ; i < 4 ; i++ ){
+  for( i = 0 ; i < 4 ; i++ ){
     mode[i] = cmode[i];
   }
 }
@@ -75,3 +77,19 @@ int DevcDevice::getDeviceID( void ){
   return id;
 }
 
+int DevcDevice::getRecieveData( char *dst ){
+  memcpy( dst , rbuf , rsize );
+  return rsize;
+}
+
+void DevcDevice::setSendData( char *src ){
+  memcpy( sbuf , src , ssize );
+}
+
+void DevcDevice::switchBinaryMap( string bmap ){
+  current_binarymap = bmap;
+}
+
+string DevcDevice::currentBinaryMap( void ){
+  return current_binarymap;
+}

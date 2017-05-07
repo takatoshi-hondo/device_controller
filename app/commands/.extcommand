@@ -1,0 +1,12 @@
+createnewdevice.so
+devmode.so
+devstatus.so
+nullc.so
+opendevice.so
+printvar.so
+setbinarymap.so
+setdeviceconf.so
+setdevicenum.so
+start.so
+stop.so
+switchbinarymap.so

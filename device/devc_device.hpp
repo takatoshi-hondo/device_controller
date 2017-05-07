@@ -4,7 +4,7 @@
 #include <iostream>
 #include <cstdio>
 #include <string>
-#include <map>
+#include <list>
 
 using namespace std;
 
@@ -15,6 +15,7 @@ protected:
   char   *rbuf , *sbuf;
 private:
   string  status[5];
+  string  current_binarymap;
 public:
   const static char MODE_RECIEVE    = 'R';
   const static char MODE_SEND       = 'S';
@@ -38,7 +39,11 @@ public:
   int    getCurrentRecvSize( void );
   int    getCurrentSendSize( void );
   int    getDeviceID( void );
-  virtual void setDeviceConf( map<string,string> ) = 0;
+  int    getRecieveData( char * );
+  void   setSendData( char * );
+  void   switchBinaryMap( string );
+  string currentBinaryMap( void );
+  virtual void setDeviceConf( list<string> ) = 0;
   virtual void openDevice( void )                  = 0;
   virtual void readData( void )                    = 0;
   virtual void sendData( void )                    = 0;
