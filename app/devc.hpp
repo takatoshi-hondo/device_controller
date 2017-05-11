@@ -5,6 +5,10 @@
 #include "binarymap.hpp"
 #include <dlfcn.h>
 #include <commandInterface.hpp>
+#include <csignal>
+#include <cstring>
+#include <time.h>
+#include <sys/time.h>
 
 typedef void *(*registerfunc)( void );
 
@@ -46,6 +50,7 @@ public:
   ~Devc();
 };
 
-void rt_thread_task( Devc * );
+void rt_thread_task( Devc * , bool );
+void nonrt_thread_task( Devc * , CommandManager<Devc> * );
 
 #endif

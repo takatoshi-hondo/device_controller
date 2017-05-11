@@ -44,17 +44,21 @@ public:
   }
 };
 
+void defaultSignalHandler( int a ){}
+
 int main( int ac , char **av ){
   StdinReciever        r_stdin( "device controller >> " );
-  FileReciever         r_file( "devc.rc" );
+  FileReciever         r_file( "devc.rc" ); //should be command line option
   StdoutSender         s_stdout;
   Devc                 devc;
   CommandManager<Devc> cm( &r_file , &s_stdout , &devc );
+  CommandManager<Devc> cm2( &r_stdin , &s_stdout , &devc );
   Params<Devc>         cmd_param;
   LC                   lc( &cm );
-  thread               rt_th( rt_thread_task , &devc );
+  thread               rt_th( rt_thread_task , &devc , false ); //should be command line option
+  //thread               nonrt_th( nonrt_thread_task , &devc , &cm2 );
   bool                 first = true;
-  
+
   cm.addCommand( &cmd_param );
   try{
     while( 1 ){
@@ -68,5 +72,6 @@ int main( int ac , char **av ){
   }catch( int e ){
     devc.rtThreadExit();
     rt_th.detach();
+    //nonrt_th.detach();
   }
 }

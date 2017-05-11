@@ -12,6 +12,7 @@ all: $(OBJS) $(EXE)
 
 $(EXE): $(OBJS) $(EXTOBJ)
 	$(CC) $(CXXFLAGS) $^ -o $@ $(LDLIBS)
+	(cd commands; make -f Makefile.plugin)
 
 clean:
 	rm -rf $(OBJS) $(EXE) *.so *~

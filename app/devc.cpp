@@ -152,13 +152,30 @@ Devc::~Devc(){
   }
 }
 
-void rt_thread_task( Devc *devc ){
+void rt_thread_task( Devc *devc , bool blocking ){
+  sigset_t         ss;
+  int              signo;
+
   while( 1 ){
     if( devc->threadExit() ){
       break;
     }
-    usleep( 20000 ); //should be interval timer
+    if( !blocking ){
+      usleep(10000);
+    }
     devc->execRTCommands();
     devc->mainLoop();
+  }
+}
+
+void nonrt_thread_task( Devc *devc , CommandManager<Devc> *cm ){
+  try{
+    while( 1 ){
+      if( devc->threadExit() ){
+	break;
+      }
+    }
+    //cm->exeCommand();
+  }catch( int e ){
   }
 }
