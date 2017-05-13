@@ -32,8 +32,8 @@ void DevcBinaryMap::loadBinaryMap( string filename ){
       getline( ss_send , tmp2 , ',' );
       getline( ss_send , tmp3 , ',' );
       tmp.sendvarname.push_back( tmp1 );
-      tmp.sendsize.push_back( stod(tmp2) );
-      tmp.svalperad.push_back( stoi(tmp3) );
+      tmp.sendsize.push_back( stoi(tmp2) );
+      tmp.svalperad.push_back( stod(tmp3) );
       svar[tmp1] = 0.0;
       tmp.totalssize += stod(tmp2);
     }
@@ -43,8 +43,8 @@ void DevcBinaryMap::loadBinaryMap( string filename ){
       getline( ss_recv , tmp2 , ',' );
       getline( ss_recv , tmp3 , ',' );
       tmp.recvvarname.push_back( tmp1 );
-      tmp.recvsize.push_back( stod(tmp2) );
-      tmp.rvalperad.push_back( stoi(tmp3) );
+      tmp.recvsize.push_back( stoi(tmp2) );
+      tmp.rvalperad.push_back( stod(tmp3) );
       rvar[tmp1] = 0.0;
       tmp.totalrsize += stod(tmp2);
     }
